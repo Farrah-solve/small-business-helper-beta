@@ -12,12 +12,13 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Farrah-solve/small-business-helper-beta/issues"
   },
   "homepage": "https://github.com/Farrah-solve/small-business-helper-beta#readme",
   "dependencies": {
+    "chart.js": "^2.9.4",
     "express": "^4.17.1"
   }
 }
