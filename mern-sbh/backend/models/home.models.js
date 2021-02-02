@@ -6,6 +6,7 @@ const Schema = mongoose.Schema;
 const homeSchema = new Schema({
     companyname: { type: String, required: true },
 });
+// not sure this will do what I intend, may need to revisit
 
 const Home = mongoose.model('Home', homeSchema);
 

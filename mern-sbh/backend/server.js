@@ -1,3 +1,4 @@
+// requiring and using dependencies
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
@@ -19,6 +20,7 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
+// connecting to db
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri,
     process.env.MONGODB_URI || 'mongodb://localhost/sbh-b',
@@ -34,8 +36,16 @@ mongoose.connect(uri,
       console.log("MongoDB database connection established successfully")
     })
     
+    // importing routes
+  const userRouter = require('./routes/user');
+  const homeRouter = require('./routes/home');
+  const budgetRouter = require('./routes/budget');
 
-  app.use(require(""));
+  app.use('/user', userRouter);
+  app.use('/home', homeRouter);
+  app.use('/budget', budgetRouter);
+
+
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
