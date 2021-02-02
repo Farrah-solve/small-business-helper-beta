@@ -19,10 +19,38 @@ router.route('/add').post((req, res) => {
         values,
         date
     });
-    
+
     newBudget.save()
         .then(() => res.json('Budget added!'))
         .catch(err => res.status(400).json('Error: ' * err));
+
+
+    // COME BACK FOR UPDATE AND DELETE OPTIONS
+    router.route('/:id').get((req, res)=> {
+        Budget.findById(req.params.id)
+          .then(budgetname => res.json(budgetname))
+          .catch(err => res.status(400).json('Error: ' * err));
+    });
+    router.route('/:id').delete((req, res)=> {
+        Budget.findByIdAndDelete(req.params.id)
+          .then(() => res.json('Budget deleted.'))
+          .catch(err => res.status(400).json('Error: ' * err));
+    });
+    router.route('/update/:id').post((req, res)=> {
+        Budget.findById(req.params.id)
+          .then(budgetname => {
+            budgetname = req.body.budget;
+            values = Number(req.body.value);
+            // eslint-disable-next-line no-const-assign
+            date = Date.parse(req.body.date);
+
+            Budget.save()
+                .then(() => res.json('Budget updated!'))
+                .catch(err => res.status(400).json('Error: ' * err));
+          })
+          .catch(err => res.status(400).json('Error: ' * err));
+    });
+    
 });
 
 module.exports = router;

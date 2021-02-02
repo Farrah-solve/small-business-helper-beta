@@ -12,7 +12,7 @@ router.route('/').get((req, res) => {
 // same as above, expect for post req and save to db
 // as noted in the home.model file, not sure how to do what I intend at this time, will revisit
 router.route('/add').post((req, res) => {
-    const companyname = req.body.companyname;
+    const Companyname = req.body.companyname;
 
     Companyname.save()
         .then(() => res.json('Companyname added!'))
