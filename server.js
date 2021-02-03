@@ -5,6 +5,11 @@ const mongoose = require("mongoose");
 const compression = require("compression");
 const cors = require('cors');
 require('dotenv').config();
+// const passport = require('passport');
+// const passportLocal = require('passport-local').Strategy;
+// const cookieParser = require('cookie-parser');
+// const bcrypt = require('bcryptjs');
+
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -19,6 +24,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(express.static("public"));
+
+// app.use(passport.initialize());
+// require('./passportConfig')(passport);
 
 // connecting to db
 const uri = process.env.ATLAS_URI;
@@ -40,6 +48,7 @@ mongoose.connect(uri,
   const userRouter = require('./routes/user');
   const homeRouter = require('./routes/home');
   const budgetRouter = require('./routes/budget');
+// const cookieParser = require("cookie-parser");
 
   app.use('/user', userRouter);
   app.use('/home', homeRouter);
